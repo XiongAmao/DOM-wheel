@@ -16,7 +16,15 @@ items.text()
 // 返回内容
 item = $(items.get(0))
 
-item.siblings().removeClass('active').end()
+// 1. item 没有 siblings 方法
+// 2. 需求要有 xxx.siblings 方法
+// 3. $item = $(item)   $item.siblings() 返回 item 的兄弟
+
+// 1. $item.siblings() 没有 addClass 方法
+// 2. 需求要有  $item.siblings().addClass
+// 3. $item.siblings() 的结果是 $('li') 类似的东西
+
+$item.siblings().removeClass('active').end()
   .addClass('active')
 ```
 
@@ -47,13 +55,13 @@ array.on = function(eventType, fnc){
 
 ```javascript
 array.addClass = function (value) {
-  for (var i = 0; i < items.length; i++) {
+  for (var i = 0; i < array.length; i++) {
     array[i].classList.add(value)
   }
   return array
 }
 array.removeClass = function (value) {
-  for (var i = 0; i < items.length; i++) {
+  for (var i = 0; i < array.length; i++) {
     array[i].classList.remove(value)
   }
   return array
@@ -65,7 +73,7 @@ array.removeClass = function (value) {
 ```javascript
 array.addClass = function (className) {
   if (className !== undefined) {
-    for (var i = 0; i < items.length; i++) {
+    for (var i = 0; i < array.length; i++) {
       array[i].classList.add(className)
     }
   }
@@ -73,7 +81,7 @@ array.addClass = function (className) {
 }
 array.removeClass = function (className) {
   if (className !== undefined) {
-    for (var i = 0; i < items.length; i++) {
+    for (var i = 0; i < array.length; i++) {
       array[i].classList.remove(className)
     }
   }
@@ -88,13 +96,13 @@ array.removeClass = function (className) {
 ```javascript
 array.text = function (text) {
   if (text !== undefined) {
-    for (var i = 0; i < items.length; i++) {
+    for (var i = 0; i < array.length; i++) {
       array[i].textContent = text  //这个方法有局限
     }
     return array
   }else{
     let result = []
-    for(var i =0; i< items.length;i++){
+    for(var i =0; i< array.length;i++){
       result.push(array[i].textContent)
     }
     return result
@@ -123,14 +131,14 @@ window.$ = function (selectorOrNode) {
     }
 
     array.on = function (eventType, fnc) {
-        for (var i = 0; i < items.length; i++) {
+        for (var i = 0; i < array.length; i++) {
             array[i].addEventListener(eventType, fnc)
         }
         return array
     }
     array.addClass = function (className) {
         if (className !== undefined) {
-            for (var i = 0; i < items.length; i++) {
+            for (var i = 0; i < array.length; i++) {
                 array[i].classList.add(className)
             }
         }
@@ -138,7 +146,7 @@ window.$ = function (selectorOrNode) {
     }
     array.removeClass = function (className) {
         if (className !== undefined) {
-            for (var i = 0; i < items.length; i++) {
+            for (var i = 0; i < array.length; i++) {
                 array[i].classList.remove(className)
             }
         }
@@ -146,13 +154,13 @@ window.$ = function (selectorOrNode) {
     }
     array.text = function (text) {
         if (text !== undefined) {
-            for (var i = 0; i < items.length; i++) {
+            for (var i = 0; i < array.length; i++) {
                 array[i].textContent = text
             }
             return array
         } else {
             let result = []
-            for (var i = 0; i < items.length; i++) {
+            for (var i = 0; i < array.length; i++) {
                 result.push(array[i].textContent)
             }
             return result
