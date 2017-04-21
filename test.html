@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM.js</title>
+</head>
+
+<body>
+    <ul>
+        <li class="error">1</li>
+        <li class="error">2</li>
+        <li class="error">3<span>这里有个span</span></li>
+        <li class="error">4</li>
+    </ul>
+
+    <script src="./dom.js"></script>
+
+    <script>
+        let items = $('li')
+        console.assert(items[1] instanceof Node)
+        console.assert(items[2] instanceof Element)
+        console.assert(typeof items === 'object')
+
+        console.assert(typeof $ === 'function')
+        console.assert(typeof items.on === 'function')
+        items.on('click', function () {
+            console.log('click')
+        })
+
+        console.assert(items.addClass('hi') === items)
+
+        items.addClass('hi').removeClass('error')
+        console.assert(items.addClass('hi').removeClass('error') === items)
+        console.assert(typeof items.addClass === 'function')
+        console.assert(typeof items.removeClass === 'function')
+        var testA = items.addClass()
+        console.assert(testA[0].classList.contains('undifined') === false)
+        items.text('雷猴')
+        console.log(items.text())
+        var contents = items.text()
+        for (i = 0; i < items.length; i++) {
+            console.assert(contents[i] === "雷猴")
+        }
+
+        let item = items.get(0)
+        let $item = $(item)
+        console.assert(item.tagName === "LI")
+        console.assert(item.addEventListener !== undefined)
+        console.assert(item === items[0])
+        console.assert($item instanceof Array)
+
+        console.assert(item.siblings === undefined)
+        // item不是$ 方法里面返回的数组，而是一个元素
+        console.assert($item.siblings !== undefined)
+        console.assert($item.siblings() instanceof Array)
+        let $li = $('li:nth-child(3)')
+        // 这里发现一个bug，已修复
+        let $li2 = $('li:nth-child(2)')
+        $li2.addClass('cool')
+        console.assert($li.siblings().previousSelection === $li)
+        console.assert($li.siblings().end() === $li.siblings().previousSelection)
+        $li.siblings().removeClass('error').end()
+            .addClass('error')
+
+        console.assert(typeof item.on === 'undefined')
+        console.assert(typeof $item.on === 'function')
+
+        console.log('运行完毕')
+    </script>
+
+    <style>
+        .hi {
+            color: blue;
+            border: 1px solid;
+        }
+        
+        span {
+            color: black;
+        }
+        
+        .error {
+            color: red;
+        }
+        
+        .cool {
+            background: #666;
+            color: white;
+        }
+    </style>
+</body>
+
+</html>
