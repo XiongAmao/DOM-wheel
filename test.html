@@ -47,6 +47,8 @@
 
         let item = items.get(0)
         let $item = $(item)
+        $item.siblings().removeClass('active').end()
+             .addClass('active')
         console.assert(item.tagName === "LI")
         console.assert(item.addEventListener !== undefined)
         console.assert(item === items[0])
@@ -80,7 +82,10 @@
         span {
             color: black;
         }
-        
+        .active{
+            color:green;
+            
+        }
         .error {
             color: red;
         }
