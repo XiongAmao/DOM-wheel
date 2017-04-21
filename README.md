@@ -201,3 +201,10 @@ array.end = function (){
 }
 ```
 
+
+
+
+
+#### 学习过程中遇到的问题：
+
+1. for循环遍历时，addClass，on，removeClass方法都用错了长度，用了item.length，导致出现了bug
