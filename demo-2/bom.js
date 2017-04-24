@@ -13,8 +13,8 @@ $.bom = {
         let pageHeight = window.innerHeight ? window.innerHeight : screen.height
         console.log("pageH= "+pageHeight,"pageW= "+pageWidth)
         // 兼容firfox
-        let top = window.screenTop ? window.screenTop : screenTop
-        let left = window.screenLeft ? window.screenLeft : screenLeft
+        let top = window.screenTop ? window.screenTop : screenY
+        let left = window.screenLeft ? window.screenLeft : screenX
         console.log("Top= "+top,"left= "+left)
 
         window.open(url, '_blank', `
