@@ -7,6 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BOM</title>
     <script src="./bom.js"></script>
+    <style>
+    p{
+        max-width:600px;
+    }
+    
+    </style>
 </head>
 
 <body>
@@ -24,8 +30,8 @@
     <button id="button5">get a</button>
     <button id="button6">get b</button>
     <P>课上的代码存在一些空字符串带来的bug:</P>
-    <p>当页面一开始没有任何查询字符时，输入两个参数会得到?&a=1这样的结果，如果继续添加查询字符串会在重新构造查询字符串时出现?=&a=3&b=2&这样的情况，已修复</p>
-    <p></p>
+    <p>当页面一开始没有任何查询字符时，输入两个参数会得到 ?&a=1 这样的结果，如果继续添加查询字符串会在重新构造查询字符串时出现 ?=&a=3&b=2& 这样的情况</p>
+    <p>已修复，代码还需要优化</p>
     <script>
         openNewWindow.onclick = function () {
             $.bom.openAtCenter(300, 300, "http://www.baidu.com")
