@@ -10,10 +10,44 @@
 </head>
 
 <body>
+    <p>$.bom.openAtCenter:</p>
     <button id="openNewWindow">打开一个新页面</button>
+    <hr>
+    <p>$.bom.search():</p>
+    <button id="restart">restart</button>
+    <button id="button1">get Query Strings</button>
+    <button id="button2">set a=1</button>
+    <button id="button3">set b=2</button>
+    <button id='button4'>reset a=3</button>
+    <br>
+    <br>
+    <button id="button5">get a</button>
+    <button id="button6">get b</button>
+    <P>存在一个bug待修复，当页面一开始没有任何查询字符时，如果通过这个方法设置一个参数就会使里面封装的searchAll()返回的第一个键值对为"":""，会使得reset后面的参数时使整个重新构造的查询字符串出现?=&a=3&b=2&这样的情况</P>
     <script>
         openNewWindow.onclick = function () {
             $.bom.openAtCenter(300, 300, "http://www.baidu.com")
+        }
+        restart.onclick = function () {
+            location.search = ''
+        }
+        button1.onclick = function () {
+            console.log($.bom.search())
+        }
+        button2.onclick = function () {
+            $.bom.search('a', 1)
+        }
+        button3.onclick = function () {
+            $.bom.search('b', 2)
+        }
+        button4.onclick = function () {
+            $.bom.search('a', 3)
+        }
+        button5.onclick = function () {
+            console.log($.bom.search('a'))
+        }
+        button6.onclick = function () {
+            console.log($.bom.search('b'))
         }
     </script>
 </body>
