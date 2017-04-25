@@ -66,6 +66,18 @@ encodeURIComponent(str)
 // 将参数转义为UTF-8表示
 decodeURIComponent(str)
 // 将已编码的URI能识别的转义序列转成原字符
+
+var abc = { 'abc':'abc'}
+delete abc['abc']  // abc = {}
+
+function isEmptyObject(obj) {
+  for (var key in obj) {
+    return false;
+  }
+  return true
+}  // 判断一个对象是否为空
 ```
-#### bug：
-当页面一开始没有任何查询字符时，如果通过这个方法设置一个参数就会使里面封装的searchAll()返回的第一个键值对为"":""，会使得reset后面的参数时使整个重新构造的查询字符串出现?=&a=3&b=2&这样的情况
+
+课上的代码存在一些空字符串带来的bug:
+当页面一开始没有任何查询字符时，输入两个参数会得到 ?&a=1 这样的结果，如果继续添加查询字符串会在重新构造查询字符串时出现 ?=&a=3&b=2& 这样的情况
+已修复，代码还需要优化
