@@ -23,7 +23,9 @@
     <br>
     <button id="button5">get a</button>
     <button id="button6">get b</button>
-    <P>存在一个bug待修复，当页面一开始没有任何查询字符时，如果通过这个方法设置一个参数就会使里面封装的searchAll()返回的第一个键值对为"":""，会使得reset后面的参数时使整个重新构造的查询字符串出现?=&a=3&b=2&这样的情况</P>
+    <P>课上的代码存在一些空字符串带来的bug:</P>
+    <p>当页面一开始没有任何查询字符时，输入两个参数会得到?&a=1这样的结果，如果继续添加查询字符串会在重新构造查询字符串时出现?=&a=3&b=2&这样的情况，已修复</p>
+    <p></p>
     <script>
         openNewWindow.onclick = function () {
             $.bom.openAtCenter(300, 300, "http://www.baidu.com")

@@ -29,19 +29,35 @@ $.bom = {
         let searchAll = function () {
             let originalSearch = window.location.search
             let searchResult = {}
-            if (originalSearch[0] === '?') {
-                originalSearch = originalSearch.slice(1)
+            if (originalSearch === "") {
+                return searchResult
+            } else {
+                if (originalSearch[0] === '?') {
+                    originalSearch = originalSearch.slice(1)
+                }
+                let searchArray = originalSearch.split('&')
+                console.log(searchArray)
+                // if(searchArray[0]==="")
+
+                for (var i = 0; i < searchArray.length; i++) {
+                    let parts = searchArray[i].split('=')
+                    // 把每个查询字符串？的前后分割成一个数组，取前后作为键名和键值
+                    searchResult[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1] || "")
+                    // 如果原本不存在值则给它一个空字符串
+                    // 将已编码的部分转成原字符，保证获取的参数键值对原字符
+                }
+                delete searchResult[""] //保证所有结果里面没有空字符串作为对象，以免出现只有拼接符
+                return searchResult
             }
-            let searchArray = originalSearch.split('&')
-            for (var i = 0; i < searchArray.length; i++) {
-                let parts = searchArray[i].split('=')
-                // 把每个查询字符串？的前后分割成一个数组，取前后作为键名和键值
-                searchResult[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1] || "")  
-                // 如果原本不存在值则给它一个空字符串
-                // 将已编码的部分转成原字符，保证获取的参数键值对原字符
+        }
+
+        function isEmptyObject(obj) {
+            for (var key in obj) {
+                return false;
             }
-            return searchResult
-        } // 封装成方法
+            return true
+        }  // 判断一个对象是否为空
+
 
         let result = searchAll()
         // 只做一次调用以免反复获取
@@ -55,16 +71,22 @@ $.bom = {
             return result[name]
             // 当不传value时，返回匹配name的查询结果
         } else {
-            if(result[name] === undefined){
+            if (result[name] === undefined) {
                 // 判断name是否存在于当前search里，如果没有，则直接在后面附加
-                location.search += `&${encodeURIComponent(name)}=${encodeURIComponent(value)}`
-            }else{
-                // 如果name存在，则改这个name对应的值，然后通过构造新的search结果，跳转至新的search
-                result[name]  = encodeURIComponent(value)
+                if (isEmptyObject(result)) { // 当对象为空时，开头不加&
+                    location.search += `${encodeURIComponent(name)}=${encodeURIComponent(value)}`
+                } else {
+                    location.search += `&${encodeURIComponent(name)}=${encodeURIComponent(value)}`
+                }
+            } else {
+                // 如果name存在，构造新的search
                 let newSearch = "?"
+
+                result[name] = encodeURIComponent(value)
+                // 替换属性
                 // 构造一个新的search，遍历
-                for (let key in result){
-                    if(key !== undefined){
+                for (let key in result) {
+                    if (key !== undefined) {
                         newSearch += `${encodeURIComponent(key)}=${encodeURIComponent(result[key])}&`
                     }
                 }
