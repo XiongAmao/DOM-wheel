@@ -36,8 +36,6 @@ $.bom = {
                     originalSearch = originalSearch.slice(1)
                 }
                 let searchArray = originalSearch.split('&')
-                console.log(searchArray)
-                // if(searchArray[0]==="")
 
                 for (var i = 0; i < searchArray.length; i++) {
                     let parts = searchArray[i].split('=')
