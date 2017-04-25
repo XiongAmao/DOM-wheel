@@ -6,3 +6,4 @@
 
 ## domo-2
 BOM库
+https://xiongamao.github.io/DOM-wheel/demo-2/index.html?c=2
