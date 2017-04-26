@@ -1,0 +1,22 @@
+/* tabs Component */
+
+.tabs{
+
+}
+.tabs > ol >li{
+    list-style: none;
+}
+.tabs > .tabs-nav{
+    display: flex;
+}
+.tabs > .tabs-nav > li{
+    flex-grow: 1;
+}
+.tabs > .tabs-panes > li{
+    display: none;
+}
+.tabs > .tabs-panes > li.active{
+    display: flex;
+}
+
+

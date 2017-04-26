@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./tabs.css">
+    <style>
+        /*  user */
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #E2DED2;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+        
+        .wrapper {
+            margin-top: 60px;
+            border-radius: 4px;
+            background: repeating-linear-gradient(-45deg, #D9D6C5, #D9D6C5, #CFCBBF 3px, #CFCBBF 3px);
+            padding: 10px;
+            width: 470px;
+            position: relative;
+        }
+        .wrapper::before{
+            content: '';
+            display: block;
+            position: absolute;
+            top: -2px;left: -2px;right: -2px;bottom: -2px;
+            z-index: -1;
+            border: 1px solid #CFC8B8;border-radius: 4px;
+        }
+        .tabs {
+            border-radius: 4px;
+            background: #F0EDE6;
+        }
+        
+        .tabs>.tabs-nav {
+            border: solid 1px #969591;
+            border-bottom: none;
+            height: 60px;
+            cursor: pointer;
+        }
+        
+        .tabs>.tabs-nav>li {
+            text-align: center;
+            text-transform: uppercase;
+            padding: 20px;
+            background: linear-gradient(#EEEBE2, #CFC8B8);
+            color: #847E6F;
+            text-shadow: 1px 1px 1px white;
+            box-shadow: inset 0 0 1px hsla(0, 0%, 0%, 0.15);
+            /* box-shadow 制作边框*/
+        }
+        
+        .tabs>.tabs-nav>li.active {
+            background: linear-gradient(white, #EEEBE2);
+            box-shadow: none;
+            color: black;
+        }
+        
+        .tabs>.tabs-panes {
+            border: solid 1px #969591;
+            border-top: none;
+            height: 400px;
+        }
+        
+        .tabs>.tabs-panes>li.active {
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="tabs">
+            <ol class="tabs-nav" data-role="tabs-nav">
+                <li class="active">
+                    <div>how buying works</div>
+                </li>
+                <li>
+                    <div>how selling works</div>
+                </li>
+            </ol>
+            <ol class="tabs-panes" data-role="tabs-panes">
+                <li class="active">
+                    <div>pane1</div>
+                </li>
+                <li>
+                    <div>pane2</div>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="../tabs-1.js"></script>
+</body>
+
+</html>
