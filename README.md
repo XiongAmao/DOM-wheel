@@ -8,6 +8,7 @@ https://xiongamao.github.io/DOM-wheel/demo-2/index.html?c=2
 
 # demo-3
 tabs
+https://xiongamao.github.io/DOM-wheel/tabs/demo-1/index.html
 
 # demo-4
 slider
