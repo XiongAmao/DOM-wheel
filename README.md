@@ -12,3 +12,5 @@ https://xiongamao.github.io/DOM-wheel/tabs/demo-1/index.html
 
 # demo-4
 slider
+
+https://xiongamao.github.io/DOM-wheel/slider/demo-1/index.html
