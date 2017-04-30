@@ -12,18 +12,10 @@ window.slides = function (element) {
     })
 
     // sliderNav
-    let $ol = $('<ol class="slides-view-nav"></ol>')
-    for (let i = 0; i < count; i++) {
-        $ol.append(`<li></li>`)
-    }
-    $element.append($ol)
+    let $ol = createSliderNav()
     let $navLi = $element.find('.slides-view-nav>li')
     $navLi.eq(0).addClass('active')
-    $ol.on('click', 'li', function (e) {
-        let $clickLi = $(e.currentTarget)
-        let index = $clickLi.index()
-        goToSlide(index)
-    })
+
 
     function goToSlide(index) {
         let width = $element.width()
@@ -54,17 +46,31 @@ window.slides = function (element) {
             $view.css({
                 transform: `transLateX(${lastTransform}px)`
             })
-            $navLi.eq(0).addClass('active').siblings().removeClass('active')
+            $navLi.eq(0).addClass('active')
+                .siblings().removeClass('active')
             return
         }
         let translateX = - width * index
         $view.css({
             transform: `translateX(${translateX}px)`
         })
-        $navLi.eq(index).addClass('active').siblings().removeClass('active')
+        $navLi.eq(index).addClass('active')
+            .siblings().removeClass('active')
         currentIndex = index
     }
-
+    function createSliderNav() {
+        var $ol = $('<ol class="slides-view-nav"></ol>')
+        for (let i = 0; i < count; i++) {
+            $ol.append(`<li></li>`)
+        }
+        $element.append($ol)
+        $ol.on('click', 'li', function (e) {
+            let $clickLi = $(e.currentTarget)
+            let index = $clickLi.index()
+            goToSlide(index)
+        })
+        return $ol
+    }
     function autoPlay() {
         sliderTimeId = setInterval(function () {
             goToSlide(currentIndex + 1)
