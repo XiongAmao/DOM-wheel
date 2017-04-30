@@ -9,5 +9,7 @@ window.tabs = function (element) {
         $li.closest('ol[data-role="tabs-nav"]').siblings('ol[data-role="tabs-panes"]')
             .find('li').eq(index).addClass('active').siblings().removeClass('active')
     })
+    $tabs.find('ol[data-role="tabs-nav"]>li').eq(0).addClass("active").end().end().find('ol[data-role="tabs-panes"]>li').eq(0).addClass('active')
+    // 给第一个li active
 }
 
