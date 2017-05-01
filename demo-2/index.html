@@ -23,7 +23,7 @@
     <button id="restart">restart</button>
     <button id="button1">获取当前查询字符串的对象</button>
     <button id="button2">set a=1</button>
-    <button id="button3">set b=2</button>
+    <button id="button3">set b=你好</button>
     <button id='button4'>reset a=3</button>
     <br>
     <br>
@@ -46,7 +46,7 @@
             $.bom.search('a', 1)
         }
         button3.onclick = function () {
-            $.bom.search('b', 2)
+            $.bom.search('b', "你好")
         }
         button4.onclick = function () {
             $.bom.search('a', 3)
@@ -57,6 +57,7 @@
         button6.onclick = function () {
             console.log($.bom.search('b'))
         }
+    
     </script>
 </body>
 

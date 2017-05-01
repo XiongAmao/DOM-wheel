@@ -80,7 +80,7 @@ $.bom = {
                 // 如果name存在，构造新的search
                 let newSearch = "?"
 
-                result[name] = encodeURIComponent(value)
+                result[name] = value
                 // 替换属性
                 // 构造一个新的search，遍历
                 for (let key in result) {
