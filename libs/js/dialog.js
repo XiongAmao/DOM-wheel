@@ -1,6 +1,7 @@
 window.dialog = function (buttonSelector, options) {
     let $button = $(buttonSelector)
     let { title, content, buttons, backgroundSwitch } = options
+    console.log(backgroundSwitch)
     let $dialogPage = generateHTML()
     let hasAppended = false
     let switcher = {
@@ -58,6 +59,6 @@ window.dialog = function (buttonSelector, options) {
         $actionButtons.appendTo($dialogDiv)
         return $dialogDivWrapper
     }
-    $button.trigger('click')
+
 
 }
