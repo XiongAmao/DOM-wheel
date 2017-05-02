@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="dialog">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dialog component</title>
+    <link rel="stylesheet" href="../../libs/css/dialog.css">
+    <style>
+       
+    </style>
+</head>
+
+<body>
+    <button id="dialog">打开窗口</button>
+    <script src="../../libs/js/jquery.slim.min.js"></script>
+    <script src="../../libs/js/dialog.js"></script>
+    <script>
+        // user 
+        
+        var dialogContent = {
+            title: 'Dialog title',
+            content: 'Excepteur sit ipsum et anim ex in ut amet amet incididunt. Cupidatat mollit occaecat ex irure commodo. Officia ut cupidatat irure labore enim eu pariatur. Commodo aute ea duis ea ipsum proident ipsum magna esse id quis et eiusmod. Amet eiusmod tempor in sit laborum exercitation commodo voluptate consequat officia. Dolor tempor minim aliqua ea laborum exercitation veniam nostrud voluptate occaecat ut. Tempor nostrud labore non do irure commodo dolore id aute irure commodo dolor veniam adipisicing. ',
+            buttons: [
+                {
+                    text: "save",
+                    action: function () {
+                        return true
+                        // 控制是否确定按钮也关闭
+                    }
+                },
+                {
+                    text: "close",
+                }
+            ]
+        }
+        dialog('#dialog', dialogContent)
+
+    </script>
+</body>
+
+</html>
