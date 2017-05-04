@@ -10,7 +10,6 @@ window.dialog = function (buttonSelector, options) {
         hide: function () {
             $dialogPage.fadeOut()
             $dialogDiv.slideUp()
-
         },
         show: function () {
             $dialogPage.fadeIn()
@@ -36,18 +35,24 @@ window.dialog = function (buttonSelector, options) {
     } // 背景开关
 
     function generateHTML() {
-        let arr=[]
+        let array = []
         let $dialogDivWrapper = $('<div style="display:none;" class="dialog-wrapper fade"></div>')
-        let $dialogDiv = $('<div style="display:none" class="dialog"></div>').appendTo($dialogDivWrapper)
-        let $header = $('<div class="dialog-header"></div>').appendTo($dialogDiv)
-        let $headerH4 = $('<h4 class="dialog-header-title"></h4>').text(title).appendTo($header)
-        let $headerButton = $('<div class="dialog-header-button"><span>x<span></div>').appendTo($header)
-        let $content = $('<div class="dialog-content"></div>').text(content).appendTo($dialogDiv)
+        let $dialogDiv = $('<div style="display:none" class="dialog"></div>')
+            .appendTo($dialogDivWrapper)
+        let $header = $('<div class="dialog-header"></div>')
+            .appendTo($dialogDiv)
+        let $headerH4 = $('<h4 class="dialog-header-title"></h4>')
+            .text(title).appendTo($header)
+        let $headerButton = $('<div class="dialog-header-button"><span>x<span></div>')
+            .on('click', function () {
+                switcher.hide()
+            })
+            .appendTo($header)
+        let $content = $('<div class="dialog-content"></div>')
+            .text(content).appendTo($dialogDiv)
         let $actionButtons = $('<div class="dialog-actions"></div>')
-        $headerButton.on('click', function () {
-            switcher.hide()
-        })
-        arr.push($dialogDivWrapper,$dialogDiv)
+            .appendTo($dialogDiv)
+            
         for (let i = 0; i < buttons.length; i++) {
             let $insideButton = $('<button></button>')
                 .text(buttons[i].text).appendTo($actionButtons)
@@ -60,8 +65,8 @@ window.dialog = function (buttonSelector, options) {
                     result !== false && switcher.hide()
                 })
         }
-        $actionButtons.appendTo($dialogDiv)
-        return arr
+        array.push($dialogDivWrapper, $dialogDiv)
+        return array
     }
 
 
