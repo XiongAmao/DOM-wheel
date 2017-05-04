@@ -2,17 +2,19 @@ window.dialog = function (buttonSelector, options) {
     let $button = $(buttonSelector)
     let { title, content, buttons, backgroundSwitch } = options
     console.log(backgroundSwitch)
-    let $dialogPage = generateHTML()
+    let $newDialog = generateHTML()
+    let $dialogPage = $newDialog[0]
+    let $dialogDiv = $newDialog[1]
     let hasAppended = false
     let switcher = {
         hide: function () {
-            $dialogPage.hide()
-            $dialogPage.removeClass("in")
+            $dialogPage.fadeOut()
+            $dialogDiv.slideUp()
 
         },
         show: function () {
-            $dialogPage.show()
-            $dialogPage.addClass('in')
+            $dialogPage.fadeIn()
+            $dialogDiv.slideDown()
         },
     }
 
@@ -34,8 +36,9 @@ window.dialog = function (buttonSelector, options) {
     } // 背景开关
 
     function generateHTML() {
-        let $dialogDivWrapper = $('<div class="dialog-wrapper fade"></div>')
-        let $dialogDiv = $('<div class="dialog"></div>').appendTo($dialogDivWrapper)
+        let arr=[]
+        let $dialogDivWrapper = $('<div style="display:none;" class="dialog-wrapper fade"></div>')
+        let $dialogDiv = $('<div style="display:none" class="dialog"></div>').appendTo($dialogDivWrapper)
         let $header = $('<div class="dialog-header"></div>').appendTo($dialogDiv)
         let $headerH4 = $('<h4 class="dialog-header-title"></h4>').text(title).appendTo($header)
         let $headerButton = $('<div class="dialog-header-button"><span>x<span></div>').appendTo($header)
@@ -44,6 +47,7 @@ window.dialog = function (buttonSelector, options) {
         $headerButton.on('click', function () {
             switcher.hide()
         })
+        arr.push($dialogDivWrapper,$dialogDiv)
         for (let i = 0; i < buttons.length; i++) {
             let $insideButton = $('<button></button>')
                 .text(buttons[i].text).appendTo($actionButtons)
@@ -57,7 +61,7 @@ window.dialog = function (buttonSelector, options) {
                 })
         }
         $actionButtons.appendTo($dialogDiv)
-        return $dialogDivWrapper
+        return arr
     }
 
 
